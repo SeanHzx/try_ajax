@@ -1,0 +1,273 @@
+<!doctype html>
+<html class="no-js">
+<head>
+    <script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1">
+    <title>Hello Amaze UI</title>
+
+    <!-- Set render engine for 360 browser -->
+    <meta name="renderer" content="webkit">
+
+    <!-- No Baidu Siteapp-->
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+
+    <link rel="icon" type="image/png" href="assets/i/favicon.png">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="assets/i/app-icon72x72@2x.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+    <link rel="apple-touch-icon-precomposed" href="assets/i/app-icon72x72@2x.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="assets/i/app-icon72x72@2x.png">
+    <meta name="msapplication-TileColor" content="#0e90d2">
+
+    <link rel="stylesheet" href="assets/css/amazeui.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+
+
+    <script type="text/javascript">
+        $(function() {
+            $('#basic-info').validator({
+                onValid: function(validity) {
+                    $(validity.field).closest('.am-form-group').find('.am-alert').hide();
+                },
+
+                onInValid: function(validity) {
+                    var $field = $(validity.field);
+                    var $group = $field.closest('.am-form-group');
+                    var $alert = $group.find('.am-alert');
+                    // 使用自定义的提示信息 或 插件内置的提示信息
+                    var msg = $field.data('validationMessage') || this.getValidationMessage(validity);
+
+                    if (!$alert.length) {
+                        $alert = $('<div class="am-alert am-alert-danger"></div>').hide().
+                        appendTo($group);
+                    }
+
+                    $alert.html(msg).show();
+                }
+            });
+        });
+    </script>
+
+    <script language="javascript" type="text/javascript">
+        var request = false;
+        try {
+            request = new XMLHttpRequest();
+        } catch (failed) {
+            request = false;
+        }
+        if (!request)
+            alert("Error initializing XMLHttpRequest!");
+    </script>
+
+</head>
+<body>
+<div class="admin-content-body">
+    <div class="am-cf am-padding am-padding-bottom-0">
+        <div class="am-fl am-cf">
+            <strong class="am-text-primary am-text-lg">表单</strong> /
+            <small>form</small>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="am-tabs am-margin" data-am-tabs>
+        <ul class="am-tabs-nav am-nav am-nav-tabs">
+            <li class="am-active"><a href="#tab1">基本信息</a></li>
+            <li><a href="#tab2">职位信息</a>
+            <li><a href="#tab3">紧急联络人</a></li>
+        </ul>
+
+        <div class="am-tabs-bd">
+            <div class="am-tab-panel am-fade am-in am-active" id="tab1">
+                <form action="" class="am-form"  id="basic-info">
+                    <fieldset>
+                    <div class="am-g am-margin-top">
+                        <div class="am-u-sm-5 am-u-md-2 am-text-right">
+                            姓名
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-4">
+                            <input type="text" class="am-input-sm" id="name" name="name" minlength="3" placeholder="请输入用户名（至少 3 个字符）" data-validation-message="至少填写三个字符" required/>
+                        </div>
+                        <div class="am-hide-sm-only am-u-md-6">*必填，不可重复</div>
+                    </div>
+                        <div class="am-g am-margin-top">
+                            <div class="am-u-sm-5 am-u-md-2 am-text-right">
+                                邮箱
+                            </div>
+                            <div class="am-u-sm-8 am-u-md-4">
+                                <input type="email" class="am-input-sm" id="email" name="email"  placeholder="请输入邮箱地址（user@example.com）" data-validation-message="邮箱地址格式错误" required/>
+                            </div>
+                            <div class="am-hide-sm-only am-u-md-6">*必填，不可重复</div>
+                        </div>
+
+                        <div class="am-g am-margin-top">
+                            <div class="am-u-sm-5 am-u-md-2 am-text-right">
+                                密码
+                            </div>
+                            <div class="am-u-sm-8 am-u-md-4">
+                                <input type="password" class="am-input-sm" id="password" name="password" placeholder="请输入密码（6-20位）" minlength="6" maxlength="20" data-validation-message="密码长度不在6-20位内" required/>
+                            </div>
+                            <div class="am-hide-sm-only am-u-md-6">*必填</div>
+                        </div>
+                        <div class="am-g am-margin-top">
+                            <div class="am-u-sm-5 am-u-md-2 am-text-right">
+                                确认密码
+                            </div>
+                            <div class="am-u-sm-8 am-u-md-4">
+                                <input type="password" class="am-input-sm" id="password_confirm" data-equal-to="#password" placeholder="重复上面的密码" data-validation-message="与上面的密码不一致" required/>
+                            </div>
+                            <div class="am-hide-sm-only am-u-md-6">*必填</div>
+                        </div>
+
+                    <div class="am-g am-margin-top">
+                        <div class="am-u-sm-5 am-u-md-2 am-text-right">
+                            手机
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
+                            <input type="text" class="am-input-sm" name="phone" pattern="^1((3|5|8){1}\d{1}|70)\d{8}$" minlength="11" maxlength="11" placeholder="请输入11位手机号码" data-validation-message="手机号码必须是11位" required>
+                        </div>
+                        <div class="am-hide-sm-only am-u-md-6">*必填</div>
+                    </div>
+
+                    <div class="am-g am-margin-top">
+                        <div class="am-u-sm-5 am-u-md-2 am-text-right">
+                            住址
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
+                            <input type="text" class="am-input-sm" name="address">
+                        </div>
+                    </div>
+
+                        <div class="am-g am-margin-top">
+                            <div class="am-u-sm-4 am-u-md-2 am-text-right">用户类型</div>
+                            <div class="am-u-sm-8 am-u-md-10">
+                                <select data-am-selected="{dropUp: 1}" name="user_type">
+                                    <option value="admin">管理员</option>
+                                    <option value="user">普通用户</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+
+            <div class="am-tab-panel am-fade" id="tab2">
+                <form class="am-form">
+                    <div class="am-g am-margin-top">
+                        <div class="am-u-sm-4 am-u-md-2 am-text-right">一级部门</div>
+                        <div class="am-u-sm-8 am-u-md-10">
+                            <select data-am-selected="{btnSize: 'sm'}" name="department">
+                                <option value="option1">选项一...</option>
+                                <option value="option2">选项二.....</option>
+                                <option value="option3">选项三........</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="am-g am-margin-top">
+                        <div class="am-u-sm-4 am-u-md-2 am-text-right">二级部门</div>
+                        <div class="am-u-sm-8 am-u-md-10">
+                            <select data-am-selected="{btnSize: 'sm'}" name="subdepartment">
+                                <option value="option1">选项一...</option>
+                                <option value="option2">选项二.....</option>
+                                <option value="option3">选项三........</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="am-g am-margin-top">
+                        <div class="am-u-sm-4 am-u-md-2 am-text-right">
+                            岗位名称
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-4">
+                            <input type="text" class="am-input-sm" name="position">
+                        </div>
+                        <div class="am-hide-sm-only am-u-md-6">*必填</div>
+                    </div>
+
+                    <div class="am-g am-margin-top">
+                        <div class="am-u-sm-4 am-u-md-2 am-text-right">
+                            职位级别
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
+                            <input type="text" class="am-input-sm" name="level">
+                        </div>
+                    </div>
+
+                    <div class="am-g am-margin-top">
+                        <div class="am-u-sm-4 am-u-md-2 am-text-right">
+                            直属经理
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-4">
+                            <input type="text" class="am-input-sm" name="manager">
+                        </div>
+                        <div class="am-hide-sm-only am-u-md-6">选填</div>
+                    </div>
+                    <div class="am-g am-margin-top">
+                        <div class="am-u-sm-4 am-u-md-2 am-text-right">
+                            入职日期
+                        </div>
+                        <div class="am-u-sm-8 am-u-md-10">
+                            <form action="" class="am-form am-form-inline">
+                                <div class="am-form-group am-form-icon">
+                                    <i class="am-icon-calendar"></i>
+                                    <input type="date" class="am-form-field am-input-sm"  name="date" placeholder="日期">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="am-tab-panel am-fade am-in" id="tab3">
+                <div class="am-g am-margin-top">
+                    <div class="am-u-sm-5 am-u-md-2 am-text-right">
+                        姓名
+                    </div>
+                    <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
+                        <input type="text" class="am-input-sm" name="relative_name">
+                    </div>
+                </div>
+                <div class="am-g am-margin-top">
+                    <div class="am-u-sm-5 am-u-md-2 am-text-right">
+                        电话
+                    </div>
+                    <div class="am-u-sm-8 am-u-md-4 am-u-end col-end">
+                        <input type="text" class="am-input-sm" name="relative_phone">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="am-margin">
+        <button type="submit" class="am-btn am-btn-primary am-btn-xs">提交保存</button>
+        <button type="button" class="am-btn am-btn-primary am-btn-xs">放弃保存</button>
+    </div>
+</div>
+
+
+
+<!--[if (gte IE 9)|!(IE)]><!-->
+<script src="assets/js/jquery.min.js"></script>
+<!--<![endif]-->
+<!--[if lte IE 8 ]>
+<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="assets/js/amazeui.min.js"></script>
+</body>
+</html>
